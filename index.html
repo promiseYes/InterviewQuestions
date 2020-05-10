@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日一题</title>
+  <script src="http://cdn.staticfile.org/moment.js/2.24.0/moment.js"></script>
+  <script src="./question.js"></script>
+
+  <style>
+    .box {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+    }
+    .title {
+      font-size: 30px;
+      display: inline-block;
+      margin: 5vh auto;
+      position: relative;
+      transition: all .5s;
+    }
+    .title::after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 4px;
+      display: inline-block;
+      border-radius: 5px;
+      background: rgb(31, 156, 240);
+      bottom: -8px;
+      left: 0;
+    }
+    button {
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      width: 80px;
+      height: 44px;
+      border: medium none;
+      border-radius: 2px;
+      background: #00A3D9 none repeat scroll 0% 0%;
+      font-size: 16px;
+      color: #FFF;
+      cursor: pointer;
+    }
+    .ans {
+      max-width: 800px;
+      letter-spacing: 2px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div id="title"></div>
+    <div class="ans"></div>
+    <button id="btn" onclick="seeansFun()">查看答案</button>
+  </div>
+
+  <script>
+    let fromat_data = moment().format('YYYY-MM-DD')
+
+
+    window.onload = () => {
+      console.log(fromat_data)
+      console.log(qsdata)
+
+      let tit_dom = document.getElementById('title')
+      let tit = qsdata[fromat_data].title
+      if(tit) {
+        tit_dom.className = 'title'
+        tit_dom.innerHTML = tit
+      }
+    }
+
+
+
+
+    function seeansFun() {
+      let ans_dom = document.getElementsByClassName('ans')[0]
+      let btn = document.getElementById('btn')
+      ans_dom.innerHTML = qsdata[fromat_data].ans
+      btn.style.display = 'none'
+    }
+  </script>
+</body>
+</html>
